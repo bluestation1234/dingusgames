@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dingus Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .top-bar {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .container {
+            margin-top: 60px;
+            text-align: center;
+            padding: 20px;
+        }
+        .game-img {
+            width: 300px;
+            height: auto;
+        }
+        .buy-button, .redeem-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .redeem-section {
+            margin-top: 300px; /* Pushes it further down */
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">Dingus Games</div>
+
+    <div class="container">
+        <h1>Buy Fartnite PLUS Fork Knife</h1>
+        <img src="game.png" alt="Game Image" class="game-img">
+        <br>
+        <button class="buy-button" onclick="alert('Buy button does nothing')">Buy Now For $60 </button>
+
+        <div class="redeem-section">
+            <h2>Redeem Your Code</h2>
+            <input type="text" id="codeInput" placeholder="Enter your code">
+            <button class="redeem-button" onclick="redeemCode()">Redeem</button>
+        </div>
+    </div>
+
+    <script>
+        function redeemCode() {
+            const correctCode = "HDI6-H8SG-U3NV";
+            const userCode = document.getElementById("codeInput").value;
+
+            if (userCode === correctCode) {
+                window.location.href = "coderedeemed.html";
+            } else {
+                alert("Invalid code. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

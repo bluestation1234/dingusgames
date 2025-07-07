@@ -1,5 +1,5 @@
 Dingus Games
 
-This Will Be The Repository I Upload My Random Games In
+very crappy games
 
-So Yea Check Back Later There Might Be A Game
+GAMES ARE AT THIS URL: bluestation1234.github.io/dingusgames

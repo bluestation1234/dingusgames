@@ -27,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
         .top-bar {
             background-color: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
@@ -50,7 +49,6 @@
             text-align: center;
         }
 
-        /* Store View Components */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -87,7 +85,6 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Shared Buttons & Inputs */
         .btn {
             background-color: var(--primary);
             color: white;
@@ -117,7 +114,6 @@
             box-sizing: border-box;
         }
 
-        /* Checkout View */
         #checkout-view {
             display: none;
             justify-content: center;
@@ -136,8 +132,6 @@
         }
 
         .highlight { color: var(--highlight); font-weight: 800; }
-
-        /* Helpers */
         .hidden { display: none !important; }
     </style>
 </head>
@@ -176,7 +170,7 @@
                 <h2>Miku's Hallway</h2>
                 <button class="btn" onclick="openCheckout('Miku\'s Hallway', '$0.00', 'https://drive.google.com/drive/folders/1AWRWCJMS82-cdDyjn28TqMfVrR23R4k9?usp=drive_link', 'idk put anything')">Claim Free</button>
             </div>
-        </div>
+            </div>
 
         <div class="section-box">
             <h2>Redeem Code</h2>
@@ -244,6 +238,30 @@
                 alert("Invalid code. Please try again.");
             }
         }
+
+        // --- NEW: Add game card from scratch on load ---
+        window.onload = function() {
+            const grid = document.querySelector('.game-grid');
+            
+            // 1. Create element
+            const newCard = document.createElement('div');
+            newCard.className = 'game-card';
+
+            // 2. Set Content
+            newCard.innerHTML = `
+                <img src="launcher.png" alt="Dingus Games Launcher" class="game-img">
+                <h2>Dingus Games Launcher</h2>
+                <button class="btn">Claim Free</button>
+            `;
+
+            // 3. Set Logic
+            newCard.querySelector('.btn').onclick = function() {
+                openCheckout("Dingus Games Launcher", "$0.00", "https://drive.google.com/file/d/1CGxna4V_AfrZwT7arwSqOCTDjRRY9n_Z/view?usp=sharing", "idk put anything");
+            };
+
+            // 4. Inject
+            grid.appendChild(newCard);
+        };
     </script>
 </body>
 </html>

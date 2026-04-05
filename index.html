@@ -33,30 +33,46 @@
             color: white;
             text-align: center;
             padding: 20px;
-            font-size: 24px;
-            font-weight: 800;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
         }
 
         .container {
             max-width: 1100px;
-            margin: 100px auto 50px;
+            margin: 120px auto 50px;
             padding: 20px;
             text-align: center;
         }
 
-        .game-grid {
+        .game-grid, .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
 
-        .game-card {
+        .game-card, .news-card {
             background: var(--card-bg);
             border-radius: 16px;
             overflow: hidden;
@@ -65,17 +81,22 @@
             padding-bottom: 20px;
         }
 
-        .game-card:hover {
+        .news-card { text-align: left; padding-bottom: 0; }
+
+        .game-card:hover, .news-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
-        .game-img {
+        .game-img, .news-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .news-info { padding: 20px; }
+        .news-date { color: var(--primary); font-size: 12px; font-weight: 800; }
 
         .section-box {
             background: var(--card-bg);
@@ -114,30 +135,16 @@
             box-sizing: border-box;
         }
 
-        #checkout-view {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding-top: 50px;
-        }
-
-        .checkout-box {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        .highlight { color: var(--highlight); font-weight: 800; }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar" id="nav-title">DINGUS GAMES</div>
+    <div class="top-bar">
+        <div class="nav-link active" id="btn-store" onclick="showSection('store')">Store</div>
+        <div style="font-size: 24px; font-weight: 800;">DINGUS GAMES</div>
+        <div class="nav-link" id="btn-news" onclick="showSection('news')">News</div>
+    </div>
 
     <div id="store-view" class="container">
         <div class="game-grid">
@@ -170,7 +177,7 @@
                 <h2>Miku's Hallway</h2>
                 <button class="btn" onclick="openCheckout('Miku\'s Hallway', '$0.00', 'https://drive.google.com/drive/folders/1AWRWCJMS82-cdDyjn28TqMfVrR23R4k9?usp=drive_link', 'idk put anything')">Claim Free</button>
             </div>
-            </div>
+        </div>
 
         <div class="section-box">
             <h2>Redeem Code</h2>
@@ -182,84 +189,90 @@
         </div>
     </div>
 
-    <div id="checkout-view" class="container">
-        <div class="checkout-box">
+    <div id="news-view" class="container hidden">
+        <h1>Latest News</h1>
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="cat.jpg" alt="cat" class="news-img">
+                <div class="news-info">
+                    <span class="news-date">APRIL 5, 2026</span>
+                    <h3>sad news</h3>
+                    <p>My cat Coconut has passed away on April 5, 2026 may she rest in peace</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="launcher.png" alt="Launcher" class="news-img">
+                <div class="news-info">
+                    <span class="news-date">APRIL 4, 2026</span>
+                    <h3>Dingus Games Launcher</h3>
+                    <p>The Dingus Games Launcher has been released.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-view" class="container hidden">
+        <div class="section-box" style="max-width: 450px; margin: auto;">
             <h2 id="checkout-header">You're Buying: <span id="game-name" class="highlight"></span></h2>
             <p><strong>Total:</strong> <span id="game-price"></span></p>
             <p id="checkout-desc" style="color: var(--text-muted)"></p>
 
             <input type="text" placeholder="put anything here">
             <input type="text" placeholder="put anything here">
-            <input type="text" placeholder="put anything here">
 
             <button class="btn" id="complete-btn" style="width: 100%">Complete Purchase</button>
-            <button class="btn btn-secondary" onclick="showStore()" style="width: 100%">Back to Store</button>
+            <button class="btn btn-secondary" onclick="showSection('store')" style="width: 100%">Back to Store</button>
         </div>
     </div>
 
     <script>
-        function openCheckout(name, price, link, desc, isSecret = false) {
+        function showSection(section) {
             document.getElementById('store-view').classList.add('hidden');
-            document.getElementById('checkout-view').style.display = 'flex';
+            document.getElementById('news-view').classList.add('hidden');
+            document.getElementById('checkout-view').classList.add('hidden');
+            document.getElementById('btn-store').classList.remove('active');
+            document.getElementById('btn-news').classList.remove('active');
+
+            if (section === 'store') {
+                document.getElementById('store-view').classList.remove('hidden');
+                document.getElementById('btn-store').classList.add('active');
+            } else if (section === 'news') {
+                document.getElementById('news-view').classList.remove('hidden');
+                document.getElementById('btn-news').classList.add('active');
+            }
+        }
+
+        function openCheckout(name, price, link, desc, isSecret = false) {
+            showSection('none'); // Hide others
+            document.getElementById('checkout-view').classList.remove('hidden');
             
             document.getElementById('game-name').innerText = name;
             document.getElementById('game-price').innerText = price;
             document.getElementById('checkout-desc').innerText = desc;
             
-            const nav = document.getElementById('nav-title');
-            const header = document.getElementById('checkout-header');
-            
-            if (isSecret) {
-                nav.innerText = "??????????????";
-                header.innerHTML = `????????: <span class="highlight">${name}</span>`;
-            } else {
-                nav.innerText = "DINGUS GAMES CHECKOUT";
-                header.innerHTML = `You're Buying: <span class="highlight">${name}</span>`;
-            }
-
             document.getElementById('complete-btn').onclick = function() {
                 window.location.href = link;
             };
-            window.scrollTo(0,0);
-        }
-
-        function showStore() {
-            document.getElementById('store-view').classList.remove('hidden');
-            document.getElementById('checkout-view').style.display = 'none';
-            document.getElementById('nav-title').innerText = "DINGUS GAMES";
         }
 
         function redeemCode() {
-            const correctCode = "HDI6-H8SG-U3NV";
             const userCode = document.getElementById("codeInput").value;
-            if (userCode === correctCode) {
-                alert("Code Redeemed!");
-            } else {
-                alert("Invalid code. Please try again.");
-            }
+            alert(userCode === "HDI6-H8SG-U3NV" ? "Code Redeemed!" : "Invalid code.");
         }
 
-        // --- NEW: Add game card from scratch on load ---
+        // Logic for Dynamic Launcher Card
         window.onload = function() {
             const grid = document.querySelector('.game-grid');
-            
-            // 1. Create element
             const newCard = document.createElement('div');
             newCard.className = 'game-card';
-
-            // 2. Set Content
             newCard.innerHTML = `
-                <img src="launcher.png" alt="Dingus Games Launcher" class="game-img">
+                <img src="launcher.png" alt="Launcher" class="game-img">
                 <h2>Dingus Games Launcher</h2>
                 <button class="btn">Claim Free</button>
             `;
-
-            // 3. Set Logic
             newCard.querySelector('.btn').onclick = function() {
                 openCheckout("Dingus Games Launcher", "$0.00", "https://drive.google.com/file/d/1CGxna4V_AfrZwT7arwSqOCTDjRRY9n_Z/view?usp=sharing", "idk put anything");
             };
-
-            // 4. Inject
             grid.appendChild(newCard);
         };
     </script>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dingus Games | Premium Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --highlight: #818cf8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .top-bar {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+        }
+
+        .container {
+            max-width: 600px; 
+            margin: 120px auto 50px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .game-grid, .news-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .game-card, .news-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+
+        .news-card { text-align: left; padding-bottom: 0; }
+
+        .game-card:hover, .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-img, .news-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .news-info { padding: 20px; }
+        .news-date { color: var(--primary); font-size: 12px; font-weight: 800; }
+
+        .section-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+            width: 80%;
+        }
+
+        .btn:hover { background-color: var(--primary-hover); }
+        .btn-secondary { background-color: #334155; margin-top: 10px; }
+
+        input[type="text"] {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 16px; 
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 600px) {
+            .top-bar {
+                gap: 20px;
+                padding: 15px;
+            }
+            .top-bar div[style*="font-size: 24px"] {
+                font-size: 18px !important;
+            }
+            .container {
+                margin-top: 100px;
+            }
+            .game-img, .news-img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="nav-link active" id="btn-store" onclick="showSection('store')">Store</div>
+        <div style="font-size: 24px; font-weight: 800;">DINGUS GAMES</div>
+        <div class="nav-link" id="btn-news" onclick="showSection('news')">News</div>
+    </div>
+
+    <div id="store-view" class="container">
+        <div class="game-grid">
+            <div class="game-card" data-mobile="false">
+                <img src="game1.png" alt="Fartnite" class="game-img">
+                <h2>Fartnite PLUS Fork Knife</h2>
+                <button class="btn" onclick="alert('Buy button does nothing')">Buy Now • $60</button>
+            </div>
+
+            <div class="game-card" data-mobile="false">
+                <img src="game2.png" alt="Epic Obby" class="game-img">
+                <h2>Epic Obby!</h2>
+                <button class="btn" onclick="openCheckout('Epic Obby!', '$0.00', 'https://drive.google.com/drive/folders/1E0Djyfss5Mjya-x3y2Iq5QOzMhRXw5t-?usp=drive_link', 'Fill Out The Info (not required):')">Claim Free</button>
+            </div>
+
+            <div class="game-card" data-mobile="false">
+                <img src="game3.png" alt="Empty Trail" class="game-img">
+                <h2>Walk An Empty Trail Simulator!</h2>
+                <button class="btn" onclick="openCheckout('Walk an empty trail simulator!', '$0.00', 'https://drive.google.com/drive/folders/1mUbUpUi70PCKNHbh-jo5oUV4VGdqvl_l?usp=sharing', 'idk put something here')">Claim Free</button>
+            </div>
+
+            <div class="game-card" data-mobile="false">
+                <img src="game4.png" alt="Miku Horror" class="game-img">
+                <h2>Miku's Epic Horror Game!</h2>
+                <button class="btn" onclick="openCheckout('Miku\'s Epic Horror Game!', '$0.00', 'https://drive.google.com/drive/folders/1Qkf5In3gWI_CqKojzwJf0kqGBRWnKppj?usp=drive_link', 'idk put anything')">Claim Free</button>
+            </div>
+
+            <div class="game-card" data-mobile="false">
+                <img src="game5.png" alt="Miku Hallway" class="game-img">
+                <h2>Miku's Hallway</h2>
+                <button class="btn" onclick="openCheckout('Miku\'s Hallway', '$0.00', 'https://drive.google.com/drive/folders/1AWRWCJMS82-cdDyjn28TqMfVrR23R4k9?usp=drive_link', 'idk put anything')">Claim Free</button>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <h2>Redeem Code</h2>
+            <input type="text" id="codeInput" placeholder="XXXX-XXXX-XXXX">
+            <br>
+            <button class="btn" onclick="redeemCode()">Redeem Code</button>
+            <br>
+            <button class="btn btn-secondary" onclick="openCheckout('?????????????????', '$null.null', 'https://drive.google.com/file/d/1I8oyxAiYFtrsQ-5rzD6wfXPrkrrXiLDR/view?usp=drive_link', '?????????????', true)">???</button>
+        </div>
+    </div>
+
+    <div id="news-view" class="container hidden">
+        <h1>Latest News</h1>
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="cat.jpg" alt="cat" class="news-img">
+                <div class="news-info">
+                    <span class="news-date">APRIL 5, 2026</span>
+                    <h3>sad news</h3>
+                    <p>My cat Coconut has passed away on April 5, 2026 may she rest in peace</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="launcher.png" alt="Launcher" class="news-img">
+                <div class="news-info">
+                    <span class="news-date">APRIL 4, 2026</span>
+                    <h3>Dingus Games Launcher</h3>
+                    <p>The Dingus Games Launcher has been released.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-view" class="container hidden">
+        <div class="section-box" style="max-width: 450px; margin: auto;">
+            <h2 id="checkout-header">You're Buying: <span id="game-name" class="highlight"></span></h2>
+            <p><strong>Total:</strong> <span id="game-price"></span></p>
+            <p id="checkout-desc" style="color: var(--text-muted)"></p>
+
+            <input type="text" placeholder="put anything here">
+            <input type="text" placeholder="put anything here">
+
+            <button class="btn" id="complete-btn" style="width: 100%">Complete Purchase</button>
+            <button class="btn btn-secondary" onclick="showSection('store')" style="width: 100%">Back to Store</button>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            document.getElementById('store-view').classList.add('hidden');
+            document.getElementById('news-view').classList.add('hidden');
+            document.getElementById('checkout-view').classList.add('hidden');
+            document.getElementById('btn-store').classList.remove('active');
+            document.getElementById('btn-news').classList.remove('active');
+
+            if (section === 'store') {
+                document.getElementById('store-view').classList.remove('hidden');
+                document.getElementById('btn-store').classList.add('active');
+            } else if (section === 'news') {
+                document.getElementById('news-view').classList.remove('hidden');
+                document.getElementById('btn-news').classList.add('active');
+            }
+        }
+
+        function openCheckout(name, price, link, desc, isSecret = false) {
+            showSection('none'); 
+            document.getElementById('checkout-view').classList.remove('hidden');
+            
+            document.getElementById('game-name').innerText = name;
+            document.getElementById('game-price').innerText = price;
+            document.getElementById('checkout-desc').innerText = desc;
+            
+            document.getElementById('complete-btn').onclick = function() {
+                window.location.href = link;
+            };
+        }
+
+        function redeemCode() {
+            const userCode = document.getElementById("codeInput").value;
+            alert(userCode === "HDI6-H8SG-U3NV" ? "Code Redeemed!" : "Invalid code.");
+        }
+
+        window.onload = function() {
+            // 1. Filter existing games
+            const allCards = document.querySelectorAll('.game-card');
+            allCards.forEach(card => {
+                // Remove games explicitly marked as desktop-only
+                if (card.getAttribute('data-mobile') === 'false') {
+                    card.remove();
+                }
+            });
+
+            // 2. Add Launcher card (Mobile compatible)
+            const grid = document.querySelector('.game-grid');
+            const newCard = document.createElement('div');
+            newCard.className = 'game-card';
+            newCard.setAttribute('data-mobile', 'true');
+            newCard.innerHTML = `
+                <img src="launcher.png" alt="Launcher" class="game-img">
+                <h2>MOBILE PLACEHOLDER</h2>
+                <button class="btn">Claim Free</button>
+            `;
+            newCard.querySelector('.btn').onclick = function() {
+                openCheckout("MOBILE PLACEHOLDER", "$0.00", "https://example.com", "idk put anything");
+            };
+            grid.appendChild(newCard);
+        };
+    </script>
+</body>
+</html>

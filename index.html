@@ -177,6 +177,12 @@
                 <h2>Miku's Hallway</h2>
                 <button class="btn" onclick="openCheckout('Miku\'s Hallway', '$0.00', 'https://drive.google.com/drive/folders/1AWRWCJMS82-cdDyjn28TqMfVrR23R4k9?usp=drive_link', 'idk put anything')">Claim Free</button>
             </div>
+
+<div class="game-card">
+    <img src="game6.png" alt="Teto's Property" class="game-img">
+    <h2>Teto's Property (BETA)</h2>
+    <button class="btn" onclick="openCheckout('Teto\'s Property', '$0.00', 'https://drive.google.com/drive/folders/1eYZFnqJlaLIAR8BLDM0p1bmQfx029eke?usp=drive_link', 'Enter any info below:')">Claim Free</button>
+</div>
         </div>
 
         <div class="section-box">
@@ -193,19 +199,19 @@
         <h1>Latest News</h1>
         <div class="news-grid">
             <div class="news-card">
+                <img src="game6.png" alt="teto" class="news-img">
+                <div class="news-info">
+                    <span class="news-date">APRIL 11, 2026</span>
+                    <h3>Teto's Property</h3>
+                    <p>Teto's Property has been released.</p>
+                </div>
+            </div>
+            <div class="news-card">
                 <img src="cat.jpg" alt="cat" class="news-img">
                 <div class="news-info">
                     <span class="news-date">APRIL 5, 2026</span>
                     <h3>sad news</h3>
                     <p>My cat Coconut has passed away on April 5, 2026 may she rest in peace</p>
-                </div>
-            </div>
-            <div class="news-card">
-                <img src="launcher.png" alt="Launcher" class="news-img">
-                <div class="news-info">
-                    <span class="news-date">APRIL 4, 2026</span>
-                    <h3>Dingus Games Launcher</h3>
-                    <p>The Dingus Games Launcher has been released.</p>
                 </div>
             </div>
         </div>
@@ -226,7 +232,6 @@
     </div>
 
     <script>
-        // --- MOBILE DETECTION ---
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
         if (isMobile) {
@@ -253,7 +258,7 @@
         }
 
         function openCheckout(name, price, link, desc, isSecret = false) {
-            showSection('none'); // Hide others
+            showSection('none');
             document.getElementById('checkout-view').classList.remove('hidden');
             
             document.getElementById('game-name').innerText = name;
@@ -270,7 +275,6 @@
             alert(userCode === "HDI6-H8SG-U3NV" ? "Code Redeemed!" : "Invalid code.");
         }
 
-        // Logic for Dynamic Launcher Card
         window.onload = function() {
             const grid = document.querySelector('.game-grid');
             const newCard = document.createElement('div');

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dingus Games | Launcher Update</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Exact CSS Variables from index.html */
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --highlight: #818cf8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Exact Top Bar structure from index.html */
+        .top-bar {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        /* Container & Alignment */
+        .container {
+            max-width: 600px;
+            margin: 140px auto 50px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Exact Section Box structure from index.html */
+        .section-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Exact Button structures from index.html */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover { 
+            background-color: var(--primary-hover); 
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: var(--highlight);
+        }
+
+        p.description {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Custom list formatting following the site rules */
+        .changelog-box {
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            margin-top: 10px;
+        }
+
+        .changelog-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .changelog-list {
+            padding-left: 20px;
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .changelog-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="nav-link">Store</a>
+        <div style="font-size: 24px; font-weight: 800; cursor: default;">DINGUS GAMES</div>
+        <a href="index.html" class="nav-link">News</a>
+    </div>
+
+    <div class="container">
+        <div class="section-box">
+            <h1>Update <span class="highlight">Launcher 3.0.0</span></h1>
+            <p class="description">A new version of the Dingus Games Launcher is available. Please update to the latest version.</p>
+
+            <a href="https://drive.google.com/drive/folders/1_o74W20WeVJz_PaJv9CcEk3UPyaO4z8q?usp=drive_link" class="btn">
+                Download Update
+            </a>
+
+            <div class="changelog-box">
+                <h3>Changelog:</h3>
+                <ul class="changelog-list">
+                    <li>Updated User Interface</li>
+                    <li>Added Check For Updates Button</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

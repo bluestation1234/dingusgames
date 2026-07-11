@@ -223,53 +223,11 @@
         </div>
     </div>
 
+    <!-- Updated News View Section Container -->
     <div id="news-view" class="container hidden">
         <h1>Latest News</h1>
-        <div class="news-grid">
-            <div class="news-card">
-                <img src="game10.png" alt="peanut butter" class="news-img">
-                <div class="news-info">
-                    <span class="news-date">JULY 5, 2026</span>
-                    <h3>Peanut Butter Horror Released</h3>
-                    <p>Peanut Butter Horror has been released.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="utility wizzard.png" alt="empty trail" class="news-img">
-                <div class="news-info">
-                    <span class="news-date">JUNE 17, 2026</span>
-                    <h3>Walk An Empty Trail Simulator Remaster</h3>
-                    <p>Walk An Empty Trail Simulator Has Been Officially Remastered!</p>
-                </div>
-            </div>
-
-            <div class="news-card">
-                <img src="game8.png" alt="cup" class="news-img">
-                <div class="news-info">
-                    <span class="news-date">JUNE 14, 2026</span>
-                    <h3>cup</h3>
-                    <p>cup has been officially released on Dingus Games</p>
-                </div>
-            </div>
-
-            <div class="news-card">
-                <img src="game7.png" alt="mikutoast" class="news-img">
-                <div class="news-info">
-                    <span class="news-date">APRIL 26, 2026</span>
-                    <h3>Miku Toast!!</h3>
-                    <p>Miku Toast!! is now available on Dingus Games</p>
-                </div>
-            </div>
-
-            <div class="news-card">
-                <img src="game6.png" alt="teto" class="news-img">
-                <div class="news-info">
-                    <span class="news-date">APRIL 11, 2026</span>
-                    <h3>Teto's Property</h3>
-                    <p>Teto's Property has been released.</p>
-                </div>
-            </div>
+        <div class="news-grid" id="dynamic-news-container">
+            <!-- Feed contents will instantly render inside this boundary -->
         </div>
     </div>
 
@@ -297,6 +255,7 @@
             }
         }
 
+        // Modified layout section routine to trigger file sync checks instantly
         function showSection(section) {
             document.getElementById('store-view').classList.add('hidden');
             document.getElementById('news-view').classList.add('hidden');
@@ -310,7 +269,36 @@
             } else if (section === 'news') {
                 document.getElementById('news-view').classList.remove('hidden');
                 document.getElementById('btn-news').classList.add('active');
+                fetchLiveNewsData(); // Dynamically pulls news cards when clicked
             }
+        }
+
+        // Live asynchronous sync hook fetching from our unified data endpoint
+        function fetchLiveNewsData() {
+            const container = document.getElementById('dynamic-news-container');
+            container.innerHTML = '<p style="color: var(--text-muted)">Synchronizing updates...</p>';
+            
+            fetch('https://bluestation1234.github.io/dingusgames/news.json')
+                .then(response => response.json())
+                .then(data => {
+                    container.innerHTML = ''; // Wipe indicator status
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'news-card';
+                        card.innerHTML = `
+                            <img src="${item.img}" alt="${item.title}" class="news-img">
+                            <div class="news-info">
+                                <span class="news-date">${item.date}</span>
+                                <h3>${item.title}</h3>
+                                <p>${item.desc}</p>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch(err => {
+                    container.innerHTML = '<p style="color: #f43f5e">Unable to retrieve active update streams.</p>';
+                });
         }
 
         function openCheckout(name, price, link, desc, isSecret = false) {

@@ -110,6 +110,34 @@
             margin-right: auto;
         }
 
+        .bonus-section {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
+        }
+
+        .bonus-section h2.bonus-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .no-img-card {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .no-img-card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
         .btn {
             background-color: var(--primary);
             color: white;
@@ -224,12 +252,23 @@
             
             <div class="game-card">
                 <img src="game12.png" alt="nuke" class="game-img">
-                <h2>Joey Beta</h2>
-                <button class="btn" onclick="openCheckout('Joey Beta', '$0.00', 'https://drive.google.com/drive/folders/1Hl6lH8T_rLSpR87rDuhgbHzVOizT1C4N?usp=drive_link', 'Connection Test Failed')">Download</button>
+                <h2>Joey</h2>
+                <button class="btn" onclick="openCheckout('Joey', '$0.00', 'https://drive.google.com/drive/folders/1Hl6lH8T_rLSpR87rDuhgbHzVOizT1C4N?usp=drive_link', 'Connection Test Failed')">Download</button>
             </div>
         </div>
 
-        <!-- Placed explicitly below .game-grid -->
+        <!-- Bonus Games Section -->
+        <div class="bonus-section">
+            <h2 class="bonus-title">Bonus Games</h2>
+            <div class="game-grid">
+                <div class="game-card no-img-card">
+                    <h2>gime the money</h2>
+                    <button class="btn" onclick="openCheckout('gime the money', '$0.00', 'https://dingusgames.itch.io/gime-the-money', 'Enter any info below:')">Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redeem Code Section -->
         <div class="section-box">
             <h2>Redeem Code</h2>
             <input type="text" id="codeInput" placeholder="XXXX-XXXX-XXXX">
@@ -344,7 +383,7 @@
                 openCheckout("Dingus Games Launcher", "$0.00", "https://drive.google.com/drive/folders/1_o74W20WeVJz_PaJv9CcEk3UPyaO4z8q?usp=drive_link", "chester i told you to fill in this text");
             };
             
-            // Appends the launcher into the .game-grid before the Redeem Code box
+            // Appends the launcher into the main .game-grid before the Bonus Games section
             grid.appendChild(newCard);
         };
     </script>
